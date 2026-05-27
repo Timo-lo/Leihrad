@@ -74,21 +74,21 @@ document.getElementById("title").innerText =
 
 // Airtable Formulare 
 const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/form";
-const FORM_BATTERY = "https://airtable.com/DEIN_FORMULAR_2";
+const FORM_PICKUP = "https://airtable.com/DEIN_FORMULAR_2";
 
 
 // ⬅️ Rückgabe
-document.getElementById("repair").href =
+document.getElementById("return").href =
 FORM_REPAIR +
-"?prefill_BikeID=" + bikeId +
+"?prefill_BikeID=" + Bike-ID +
 "&prefill_Modell=" + model +
 "&prefill_Datum=" + dateTime +
 "&prefill_Aktion=Rückgabe";
 
 // ➡️ Übernahme
-document.getElementById("battery").href =
+document.getElementById("pick-up").href =
 FORM_BATTERY +
-"?prefill_BikeID=" + bikeId +
+"?prefill_BikeID=" + Bike-ID +
 "&prefill_Modell=" + model +
 "&prefill_Datum=" + dateTime +
 "&prefill_Aktion=Übernahme";
