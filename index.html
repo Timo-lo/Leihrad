@@ -95,7 +95,7 @@ FORM_HANDOVER +
 "&prefill_Fahrrad=" + encodeURIComponent(model) +
 "&prefill_Übergabezeitpunkt=" + encodeURIComponent(dateTime) +
 "&prefill_Status=Übergabe" +
-"&prefill_Datum=today";
+"&prefill_Datum=" + encodeURIComponent(dateTime);
 
 // 🔄 Rückgabe URL
 const returnUrl =
@@ -103,8 +103,8 @@ FORM_RETURN +
 "?prefill_Bike-ID=" + encodeURIComponent(bikeId) +
 "&prefill_Fahrrad=" + encodeURIComponent(model) +
 "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime) +
-"&prefill_Status=Rückgabe"
-"&prefill_Datum=today";
+"&prefill_Status=Rückgabe" +
+"&prefill_Datum=" + encodeURIComponent(dateTime);
 
 // Buttons mit Links befüllen
 document.getElementById("handover").href = handoverUrl;
