@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leihrad Service</title>
+<title>Leihrad System</title>
 
 <style>
 body {
@@ -29,10 +29,10 @@ h1 {
     background: #007bff;
     color: white;
     text-decoration: none;
-    padding: 16px;
-    margin: 12px 0;
+    padding: 18px;
+    margin: 15px 0;
     border-radius: 12px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }
 </style>
@@ -44,23 +44,20 @@ h1 {
 
 <h1 id="title">Fahrrad</h1>
 
-<a class="button" id="return">⬅️ Rückgabe</a>
-<a class="button" id="pick-up">➡️ Abholung</a>
-
+<a class="button" id="handover">🚲 Übergabe</a>
+<a class="button" id="return">🔄 Rückgabe</a>
 
 </div>
 
 <script>
-// URL Parameter holen
+// URL Parameter
 const params = new URLSearchParams(window.location.search);
 
-const bikeId = params.get("id");
-const model = params.get("model");
+const bikeId = params.get("id") || "";
+const model = params.get("model") || "";
 
-// 📅 aktuelles Datum + Uhrzeit
+// aktuelle Zeit
 const now = new Date();
-
-// Format: YYYY-MM-DD HH:MM
 const dateTime =
 now.getFullYear() + "-" +
 String(now.getMonth()+1).padStart(2,"0") + "-" +
@@ -72,28 +69,25 @@ String(now.getMinutes()).padStart(2,"0");
 document.getElementById("title").innerText =
 "Fahrrad " + bikeId + " (" + model + ")";
 
-// Airtable Formulare 
+// 👉 HIER deine Airtable Formulare einsetzen
+const FORM_HANDOVER = "";
 const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/form";
-const FORM_PICKUP = "https://airtable.com/DEIN_FORMULAR_2";
 
+// URL Builder
+function buildUrl(base, action){
+    return base +
+    "?prefill_BikeID=" + encodeURIComponent(bikeId) +
+    "&prefill_Modell=" + encodeURIComponent(model) +
+    "&prefill_Zeitpunkt=" + encodeURIComponent(dateTime) +
+    "&prefill_Aktion=" + encodeURIComponent(action);
+}
 
-// ⬅️ Rückgabe
+// Buttons setzen
+document.getElementById("handover").href =
+buildUrl(FORM_HANDOVER, "Übergabe");
+
 document.getElementById("return").href =
-FORM_REPAIR +
-"?prefill_BikeID=" + Bike-ID +
-"&prefill_Modell=" + model +
-"&prefill_Datum=" + dateTime +
-"&prefill_Aktion=Rückgabe";
-
-// ➡️ Übernahme
-document.getElementById("pick-up").href =
-FORM_BATTERY +
-"?prefill_BikeID=" + Bike-ID +
-"&prefill_Modell=" + model +
-"&prefill_Datum=" + dateTime +
-"&prefill_Aktion=Übernahme";
-
-
+buildUrl(FORM_RETURN, "Rückgabe");
 
 </script>
 
