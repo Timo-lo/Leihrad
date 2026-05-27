@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leihrad Service</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 420px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: block;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="title">Fahrrad</h1>
+
+<a class="button" id="repair">🔧 Reparatur melden</a>
+<a class="button" id="battery">🔋 Akku tauschen</a>
+<a class="button" id="maintenance">✅ Wartung</a>
+
+</div>
+
+<script>
+// URL Parameter holen
+const params = new URLSearchParams(window.location.search);
+
+const bikeId = params.get("id");
+const model = params.get("model");
+
+// 📅 aktuelles Datum + Uhrzeit
+const now = new Date();
+
+// Format: YYYY-MM-DD HH:MM
+const dateTime =
+now.getFullYear() + "-" +
+String(now.getMonth()+1).padStart(2,"0") + "-" +
+String(now.getDate()).padStart(2,"0") + " " +
+String(now.getHours()).padStart(2,"0") + ":" +
+String(now.getMinutes()).padStart(2,"0");
+
+// Titel
+document.getElementById("title").innerText =
+"Fahrrad " + bikeId + " (" + model + ")";
+
+// Airtable Formulare (HIER ersetzen)
+const FORM_REPAIR = "https://airtable.com/DEIN_FORMULAR_1";
+const FORM_BATTERY = "https://airtable.com/DEIN_FORMULAR_2";
+const FORM_MAINTENANCE = "https://airtable.com/DEIN_FORMULAR_3";
+
+// 🔧 Reparatur
+document.getElementById("repair").href =
+FORM_REPAIR +
+"?prefill_BikeID=" + bikeId +
+"&prefill_Modell=" + model +
+"&prefill_Datum=" + dateTime +
+"&prefill_Aktion=Reparatur";
+
+// 🔋 Akku
+document.getElementById("battery").href =
+FORM_BATTERY +
+"?prefill_BikeID=" + bikeId +
+"&prefill_Modell=" + model +
+"&prefill_Datum=" + dateTime +
+
+
+// ✅ Wartung
+document.getElementById("maintenance").href =
+FORM_MAINTENANCE +
+"?prefill_BikeID=" + bikeId +
+"&prefill_Modell=" + model +
+"&prefill_Datum=" + dateTime +
+"&prefill_Aktion=Wartung";
+
+</script>
+
+</body>
+</html>
