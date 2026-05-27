@@ -44,8 +44,8 @@ h1 {
 
 <h1 id="title">Fahrrad</h1>
 
-<a class="button" id="return">🔧 Rückgabe</a>
-<a class="button" id="pick-up">🔋 Abholung</a>
+<a class="button" id="return">⬅️ Rückgabe</a>
+<a class="button" id="pick-up">➡️ Abholung</a>
 
 
 </div>
@@ -72,34 +72,28 @@ String(now.getMinutes()).padStart(2,"0");
 document.getElementById("title").innerText =
 "Fahrrad " + bikeId + " (" + model + ")";
 
-// Airtable Formulare (HIER ersetzen)
-const FORM_REPAIR = "https://airtable.com/DEIN_FORMULAR_1";
+// Airtable Formulare 
+const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/form";
 const FORM_BATTERY = "https://airtable.com/DEIN_FORMULAR_2";
-const FORM_MAINTENANCE = "https://airtable.com/DEIN_FORMULAR_3";
 
-// 🔧 Reparatur
+
+// ⬅️ Rückgabe
 document.getElementById("repair").href =
 FORM_REPAIR +
 "?prefill_BikeID=" + bikeId +
 "&prefill_Modell=" + model +
 "&prefill_Datum=" + dateTime +
-"&prefill_Aktion=Reparatur";
+"&prefill_Aktion=Rückgabe";
 
-// 🔋 Akku
+// ➡️ Übernahme
 document.getElementById("battery").href =
 FORM_BATTERY +
 "?prefill_BikeID=" + bikeId +
 "&prefill_Modell=" + model +
 "&prefill_Datum=" + dateTime +
+"&prefill_Aktion=Übernahme";
 
 
-// ✅ Wartung
-document.getElementById("maintenance").href =
-FORM_MAINTENANCE +
-"?prefill_BikeID=" + bikeId +
-"&prefill_Modell=" + model +
-"&prefill_Datum=" + dateTime +
-"&prefill_Aktion=Wartung";
 
 </script>
 
