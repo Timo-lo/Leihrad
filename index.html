@@ -77,11 +77,11 @@ const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/fo
 function buildUrl(base, action){
     return base +
     "?prefill_Bike-ID=" + encodeURIComponent(bikeid) +
-    "&prefill_Fahrrad=" + encodeURIComponent(Fahrrad) +
-    "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime) +
+    "&prefill_Fahrrad=" + encodeURIComponent(fahrrad) +
     "&prefill_Status=" + encodeURIComponent(action)+
     "&prefill_Datum="+ encodeURIComponent(dateTime)+
-    "&prefill_Ausgabezeitpunkt=" + encodeURIComponent(dateTime);
+    "&prefill_Ausgabezeitpunkt=" + encodeURIComponent(dateTime) +
+    "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime); 
 }
 
 // Buttons setzen
