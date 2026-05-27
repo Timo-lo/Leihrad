@@ -94,7 +94,7 @@ FORM_HANDOVER +
 "?prefill_Bike-ID=" + encodeURIComponent(bikeId) +
 "&prefill_Fahrrad=" + encodeURIComponent(model) +
 "&prefill_Übergabezeitpunkt=" + encodeURIComponent(dateTime) +
-"&prefill_Status=verliehen" +
+"&prefill_Status=" + encodeURIComponent("ausgeliehen") +
 "&prefill_Datum=" + encodeURIComponent(dateTime);
 
 // 🔄 Rückgabe URL
@@ -103,7 +103,7 @@ FORM_RETURN +
 "?prefill_Bike-ID=" + encodeURIComponent(bikeId) +
 "&prefill_Fahrrad=" + encodeURIComponent(model) +
 "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime) +
-"&prefill_Status=zurückgegeben" +
+"&prefill_Status=" + encodeURIComponent("zurückgegeben") +
 "&prefill_Datum=" + encodeURIComponent(dateTime);
 
 // Buttons mit Links befüllen
