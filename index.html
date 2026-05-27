@@ -91,18 +91,20 @@ String(now.getMinutes()).padStart(2,"0");
 // 🚲 Übergabe URL
 const handoverUrl =
 FORM_HANDOVER +
-"?prefill_BikeID=" + encodeURIComponent(bikeId) +
-"&prefill_Fahrradmodell=" + encodeURIComponent(model) +
+"?prefill_Bike-ID=" + encodeURIComponent(bikeId) +
+"&prefill_Fahrrad=" + encodeURIComponent(model) +
 "&prefill_Übergabezeitpunkt=" + encodeURIComponent(dateTime) +
-"&prefill_Aktion=Übergabe";
+"&prefill_Status=Übergabe" +
+"&prefill_Datum=today";
 
 // 🔄 Rückgabe URL
 const returnUrl =
 FORM_RETURN +
-"?prefill_BikeID=" + encodeURIComponent(bikeId) +
-"&prefill_Fahrradmodell=" + encodeURIComponent(model) +
+"?prefill_Bike-ID=" + encodeURIComponent(bikeId) +
+"&prefill_Fahrrad=" + encodeURIComponent(model) +
 "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime) +
-"&prefill_Aktion=Rückgabe";
+"&prefill_Status=Rückgabe"
+"&prefill_Datum=today";
 
 // Buttons mit Links befüllen
 document.getElementById("handover").href = handoverUrl;
