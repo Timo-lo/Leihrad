@@ -3,37 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Leihrad System</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+    text-align:center;
 }
 
-.container {
-    max-width: 420px;
-    margin: auto;
+.container{
+    max-width:400px;
+    margin:auto;
 }
 
-h1 {
-    font-size: 22px;
-    margin-bottom: 20px;
+h1{
+    margin-bottom:25px;
 }
 
-.button {
-    display: block;
-    background: #007bff;
-    color: white;
-    text-decoration: none;
-    padding: 18px;
-    margin: 15px 0;
-    border-radius: 12px;
-    font-size: 20px;
-    font-weight: bold;
+.button{
+    display:block;
+    background:#007bff;
+    color:white;
+    text-decoration:none;
+    padding:18px;
+    margin:15px 0;
+    border-radius:12px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.button:hover{
+    background:#0056b3;
 }
 </style>
 </head>
@@ -44,20 +48,39 @@ h1 {
 
 <h1 id="title">Fahrrad</h1>
 
-<a class="button" id="handover">🚲 Übergabe</a>
-<a class="button" id="return">🔄 Rückgabe</a>
+<a class="button" id="handover" href="#">
+🚲 Übergabe
+</a>
+
+<a class="button" id="return" href="#">
+🔄 Rückgabe
+</a>
 
 </div>
 
 <script>
-// URL Parameter
+
+// URL Parameter auslesen
 const params = new URLSearchParams(window.location.search);
 
-const bikeId = params.get("id") || "";
-const model = params.get("model") || "";
+// Werte aus QR-Code holen
+const bikeId = params.get("id") || "123";
+const model = params.get("model") || "CityBike";
 
-// aktuelle Zeit
+// Titel anzeigen
+document.getElementById("title").innerText =
+"Fahrrad " + bikeId + " (" + model + ")";
+
+// 🔧 HIER DEINE AIRTABLE FORMULAR LINKS EINTRAGEN
+const FORM_HANDOVER =
+"https://airtable.com/DEIN_UEBERGABE_FORMULAR";
+
+const FORM_RETURN =
+"https://airtable.com/DEIN_RUECKGABE_FORMULAR";
+
+// Aktuelles Datum + Uhrzeit erzeugen
 const now = new Date();
+
 const dateTime =
 now.getFullYear() + "-" +
 String(now.getMonth()+1).padStart(2,"0") + "-" +
@@ -65,31 +88,25 @@ String(now.getDate()).padStart(2,"0") + " " +
 String(now.getHours()).padStart(2,"0") + ":" +
 String(now.getMinutes()).padStart(2,"0");
 
-// Titel
-document.getElementById("title").innerText =
-"fahrrad" + " bikeid " + (" + model + ")";
+// 🚲 Übergabe URL
+const handoverUrl =
+FORM_HANDOVER +
+"?prefill_BikeID=" + encodeURIComponent(bikeId) +
+"&prefill_Fahrradmodell=" + encodeURIComponent(model) +
+"&prefill_Übergabezeitpunkt=" + encodeURIComponent(dateTime) +
+"&prefill_Aktion=Übergabe";
 
-// 👉 HIER deine Airtable Formulare einsetzen
-const FORM_HANDOVER = "https://airtable.com/appJmDxyE9zDO3r8h/pag74Pw3OOO0loIdb/form";
-const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/form";
+// 🔄 Rückgabe URL
+const returnUrl =
+FORM_RETURN +
+"?prefill_BikeID=" + encodeURIComponent(bikeId) +
+"&prefill_Fahrradmodell=" + encodeURIComponent(model) +
+"&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime) +
+"&prefill_Aktion=Rückgabe";
 
-// URL Builder
-function buildUrl(base, action){
-    return base +
-    "?prefill_Bike-ID=" + encodeURIComponent(bikeid) +
-    "&prefill_Fahrrad=" + encodeURIComponent(fahrrad) +
-    "&prefill_Status=" + encodeURIComponent(action)+
-    "&prefill_Datum="+ encodeURIComponent(dateTime)+
-    "&prefill_Ausgabezeitpunkt=" + encodeURIComponent(dateTime) +
-    "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime); 
-}
-
-// Buttons setzen
-document.getElementById("handover").href =
-buildUrl(FORM_HANDOVER, "Übergabe");
-
-document.getElementById("return").href =
-buildUrl(FORM_RETURN, "Rückgabe");
+// Buttons mit Links befüllen
+document.getElementById("handover").href = handoverUrl;
+document.getElementById("return").href = returnUrl;
 
 </script>
 
