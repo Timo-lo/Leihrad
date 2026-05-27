@@ -70,16 +70,17 @@ document.getElementById("title").innerText =
 "Fahrrad " + bikeId + " (" + model + ")";
 
 // 👉 HIER deine Airtable Formulare einsetzen
-const FORM_HANDOVER = "";
-const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/form?prefill_Bike-ID=1%20&prefill_Fahrrad=Amflow%20PL%20Carbon%20&prefill_R%C3%BCckgabezeitpunkt=today%20&prefill_Status=zurückgegeben%20&prefill_Datum=today";
+const FORM_HANDOVER = "https://airtable.com/appJmDxyE9zDO3r8h/pag74Pw3OOO0loIdb/form";
+const FORM_RETURN = "https://airtable.com/appJmDxyE9zDO3r8h/pagwy3fhw2p9Uj7Pt/form";
 
 // URL Builder
 function buildUrl(base, action){
     return base +
-    "?prefill_BikeID=" + encodeURIComponent(bikeId) +
-    "&prefill_Modell=" + encodeURIComponent(model) +
+    "?prefill_Bike-ID=" + encodeURIComponent(bikeId) +
+    "&prefill_Fahrrad=" + encodeURIComponent(model) +
     "&prefill_Rückgabezeitpunkt=" + encodeURIComponent(dateTime) +
-    "&prefill_Aktion=" + encodeURIComponent(action);
+    "&prefill_Status=" + encodeURIComponent(action)+
+    "&prefill_Datum=+ encodeURIComponent(dateTime);
 }
 
 // Buttons setzen
